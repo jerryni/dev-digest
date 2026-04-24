@@ -131,11 +131,17 @@ pygmentsUseClasses = true
   [params.assets]
     disableHLJS            = false
     disableFingerprinting  = false
-    favicon                = "/favicon.ico"
+    favicon                = "favicon.ico"
+    favicon16x16           = "favicon-16x16.png"
+    favicon32x32           = "favicon-32x32.png"
+    apple_touch_icon       = "apple-touch-icon.png"
+    safari_pinned_tab      = "safari-pinned-tab.svg"
 
   [params.label]
     text = "Dev Digest"
-    icon = "/favicon.ico"
+    # Inline SVG — bulletproof against subpath / 404 issues. Uses currentColor
+    # so it picks up the theme's text color in both light and dark modes.
+    iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>'
     iconHeight = 24
 
   [params.fuseOpts]
