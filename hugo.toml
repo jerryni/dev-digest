@@ -6,6 +6,9 @@ baseURL = "https://jerryni.github.io/dev-digest/"
 title   = "Dev Digest"
 theme   = "PaperMod"
 
+# ---- Analytics ----------------------------------------------
+googleAnalytics = "G-F9VCVFH966"
+
 # ---- 多语言基础 ----------------------------------------------
 defaultContentLanguage         = "zh"
 defaultContentLanguageInSubdir = true
