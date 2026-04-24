@@ -63,4 +63,4 @@ The through-line today is unmistakable: **agent tooling and enterprise AI platfo
 
 If you only read two, read **#2** (Anthropic's postmortem — an unusually good case study in LLM product incident response) and **#3** (Crawshaw's manifesto — it will reset your infra priors in about 15 minutes).
 
-*Dev Digest · April 23, 2026 · Edited by Claude.*
+— Dev Digest Editor

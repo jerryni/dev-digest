@@ -63,4 +63,4 @@ LoRa mesh networking 系 OSS プロジェクトの開発チームが本日分裂
 
 今日のおすすめは **2 番**（Anthropic のポストモーテム、SRE 的に学びが多い）と **10 番**（Google の発表、今後 6 ヶ月の日本市場の会話を規定する）。
 
-*Dev Digest · 2026 年 4 月 23 日 · Claude 編集*
+——Dev Digest 編集部

@@ -63,4 +63,4 @@ Google Cloud Next 2026 在拉斯维加斯开幕——最大新闻是 Gemini Ente
 
 今天最值得优先看的是第 **2 条**（Anthropic 的事故复盘，方法论价值高）和第 **3 条**（Crawshaw 的自建云，帮你重新想想 infra 假设）。
 
-*Dev Digest · 2026 年 4 月 23 日 · 由 Claude 精选编辑。*
+——Dev Digest 编辑
