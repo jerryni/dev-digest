@@ -110,6 +110,7 @@ pygmentsUseClasses = true
 [params]
   env                = "production"
   author             = "Jerry Ni"
+  hideAuthor         = true   # don't show the author byline in post meta
   defaultTheme       = "auto"
   disableThemeToggle = false
   ShowReadingTime      = true
