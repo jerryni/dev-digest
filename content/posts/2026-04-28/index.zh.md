@@ -4,7 +4,7 @@ date: 2026-04-28T07:00:00+09:00
 draft: false
 tags: ["digest", "2026-04", "ai", "agents", "openai", "microsoft", "github-copilot", "ruby", "security", "claude-code"]
 categories: ["daily"]
-summary: "今日 HN 头条爆雷：Microsoft 和 OpenAI 正式终止独家与收入分成协议（737 分），AGI 条款也"已死"——AI 大厂格局重排。GitHub Copilot 转 usage-based billing 上 532 分，开发者钱包准备好。Mercor 4TB AI 标注员声音样本被偷（431 分），合同工的隐私债开始结账。pgbackrest 停止维护（392 分），Postgres 圈集体地震。微软 VibeVoice MIT 协议开源 Whisper 级语音模型，Mac 上一行 uv 命令跑通。日本圈 Matz 亲自下场写 Ruby AOT 编译器 Spinel。"
+summary: "今日 HN 头条爆雷：Microsoft 和 OpenAI 正式终止独家与收入分成协议（737 分），AGI 条款也已成历史——AI 大厂格局重排。GitHub Copilot 转 usage-based billing 上 532 分，开发者钱包准备好。Mercor 4TB AI 标注员声音样本被偷（431 分），合同工的隐私债开始结账。pgbackrest 停止维护（392 分），Postgres 圈集体地震。微软 VibeVoice 用 MIT 协议开源 Whisper 级语音模型，Mac 上一行 uv 命令跑通。日本圈 Matz 亲自下场写 Ruby AOT 编译器 Spinel。"
 ---
 
 ## 🌏 今日速览
