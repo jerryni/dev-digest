@@ -66,6 +66,50 @@ summary: "..."
 ---
 ```
 
+#### ⚠️ Front matter quoting rules (MUST follow — silent killer)
+
+Hugo's YAML parser is strict. The most common breakage is **unescaped double quotes inside a double-quoted string**, which silently truncates the value and produces a confusing build error like `value is not allowed in this context. map key-value is pre-defined`.
+
+For any string field — `title`, `summary`, tag values — apply these rules:
+
+1. **Never nest the same quote style.** If the value is wrapped in `"..."`, the inside must contain zero straight `"` characters.
+2. **Inside Chinese / Japanese text, use typographic quotes for any inner quoting:**
+   - 中文 (zh): use `"..."` (U+201C / U+201D) or `「...」`. Never use straight `"..."` inside the value.
+   - 日本語 (ja): use `「...」` or `『...』`. Never straight `"..."`.
+   - English (en): if you must quote inside, use single quotes `'...'` inside the outer `"..."`. Never nest `"..."` inside `"..."`.
+3. **Avoid leading/trailing whitespace inside the quoted value** — strip it before writing.
+4. **Tags must be plain ASCII / safe characters, no quotes inside tag strings, no emoji** (already noted in §5).
+5. When in doubt, use YAML's folded block scalar — it sidesteps all quoting:
+   ```yaml
+   summary: >-
+     This style lets you write "anything" and 'anything'
+     without escaping, across multiple lines.
+   ```
+
+##### Examples
+
+❌ **Wrong — breaks the build:**
+```yaml
+summary: "AI 训练流水线也开始进入"供应链战国时代"。VS Code 推出"Agent window"。"
+title: "Today's "must-read" picks"
+```
+
+✅ **Right:**
+```yaml
+summary: "AI 训练流水线也开始进入“供应链战国时代”。VS Code 推出“Agent window”。"
+title: "Today's 'must-read' picks"
+
+# Or, equivalently, with block scalar:
+summary: >-
+  AI 训练流水线也开始进入"供应链战国时代"。VS Code 推出"Agent window"。
+```
+
+##### Self-check before writing the file
+
+Before saving any `index.*.md`, mentally (or programmatically) run this check on the front matter you just generated:
+
+> For each line matching `<key>: "<value>"`, count straight `"` characters in `<value>`. The count must be **zero**. If it's not, swap to typographic quotes or switch the value to `>-` block scalar.
+
 ### Step 5 — Commit & push
 
 From the repo root:
@@ -105,3 +149,4 @@ After push, confirm:
 - ❌ Do not commit `public/` or `.hugo_build.lock` — they're in `.gitignore`.
 - ❌ Do not include emoji in tags (breaks some feed readers).
 - ❌ Do not write "As an AI, I..." anywhere. The editorial voice is "Dev Digest editor".
+- ❌ Do not put straight double quotes `"` inside a double-quoted YAML value (`title`, `summary`, etc.). It silently breaks the Hugo build. See Step 4's quoting rules — use `“…”` / `「…」` / `'…'` / `>-` block scalar instead.

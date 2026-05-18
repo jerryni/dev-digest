@@ -4,7 +4,7 @@ date: 2026-05-16T07:00:00+09:00
 draft: false
 tags: ["digest", "2026-05", "Anthropic", "PyTorch", "Mozilla", "Bun", "Rust", "Node.js", "Temporal", "VSCode", "Gemini", "Claude"]
 categories: ["daily"]
-summary: "周末版的今日精选：浏览器战场和 AI 战场再一次合二为一——Mozilla 公开反对 Chrome 的 Prompt API（让网页直接调本地 LLM），HN 564 分热议；PyTorch Lightning 被 Shai-Hulud 同款手法的 npm/PyPI 投毒攻击，AI 训练流水线也开始进入"供应链战国时代"。日方两条都来自 Publickey：VS Code 推出可以并行管多个 Agent 的"Agent window"，Node.js 26 把 Temporal 设成默认。中文圈两条来自 V2EX：Gemini 降智吐槽和"AI Coding 比古法编程累多了"——大模型质量和写代码体验都在被重新定价。"
+summary: "周末版的今日精选：浏览器战场和 AI 战场再一次合二为一——Mozilla 公开反对 Chrome 的 Prompt API（让网页直接调本地 LLM），HN 564 分热议；PyTorch Lightning 被 Shai-Hulud 同款手法的 npm/PyPI 投毒攻击，AI 训练流水线也开始进入“供应链战国时代”。日方两条都来自 Publickey：VS Code 推出可以并行管多个 Agent 的“Agent window”，Node.js 26 把 Temporal 设成默认。中文圈两条来自 V2EX：Gemini 降智吐槽和“AI Coding 比古法编程累多了”——大模型质量和写代码体验都在被重新定价。"
 ---
 
 ## 今日速览
