@@ -23,10 +23,11 @@ Claude should fetch from these sources in this priority order:
 For each daily run, Claude must:
 
 ### Step 0 — GitHub network preflight
-1. macOS may wake before Wi-Fi, VPN, local proxy, or DNS is ready. If an initial `git pull --ff-only origin main` already failed with a DNS/proxy/timeout error, do **not** treat it as an auth failure.
-2. Run the `wait_for_github_network` helper from Step 5, then retry the pull up to 4 times with 15s, 30s, 45s, and 60s backoff.
-3. If the pull failure is auth-like (`403`, `Authentication failed`, `Permission denied`, username/password prompts), stop and report `PAT 可能过期，请重新生成并更新 remote URL`.
-4. If GitHub is still unreachable after retries, continue generating the digest from available sources, but report that the local commit may need a later push once DNS/network recovers.
+1. macOS may wake before Wi-Fi, VPN, local proxy, or DNS is ready. This is especially common when the scheduled task fires while the computer is locked. Before the initial `git pull --ff-only origin main`, run the GitHub readiness helpers from Step 5.
+2. If normal macOS DNS cannot resolve `github.com`, try the Step 5 DoH fallback and run Git with `http.curloptResolve` so Git can reach GitHub without depending on the local `127.0.2.x` DNS proxy.
+3. Retry the pull up to 6 times with 30s, 60s, 90s, 120s, 180s, and 300s backoff.
+4. If the pull failure is auth-like (`403`, `Authentication failed`, `Permission denied`, username/password prompts), stop and report `PAT 可能过期，请重新生成并更新 remote URL`.
+5. If GitHub is still unreachable after retries, stop before generating or committing. Report that the locked/sleeping Mac did not have GitHub DNS/network readiness. Do **not** create a local-only digest commit in this case; it causes duplicate-day update work and hides the real scheduler/network problem.
 
 ### Step 1 — Fetch & dedup
 1. Pull raw items from each source (parallel WebFetch/WebSearch calls).
@@ -122,7 +123,7 @@ From the repo root, guard GitHub network operations against macOS post-wake DNS/
 
 ```bash
 wait_for_github_network() {
-  local attempts=12
+  local attempts=30
   local delay=10
 
   for i in $(seq 1 "$attempts"); do
@@ -138,6 +139,34 @@ wait_for_github_network() {
   return 1
 }
 
+resolve_github_ip() {
+  dscacheutil -q host -a name github.com 2>/dev/null |
+    awk '/ip_address:/ { print $2; exit }'
+}
+
+resolve_github_ip_via_doh() {
+  curl -fsS --connect-timeout 8 \
+    --resolve cloudflare-dns.com:443:1.1.1.1 \
+    'https://cloudflare-dns.com/dns-query?name=github.com&type=A' \
+    -H 'accept: application/dns-json' |
+    sed -n 's/.*"data":"\([0-9][0-9.]*\)".*/\1/p' |
+    head -n 1
+}
+
+git_with_github_resolve() {
+  local ip
+  ip="$(resolve_github_ip)"
+  if [ -z "$ip" ]; then
+    ip="$(resolve_github_ip_via_doh)"
+  fi
+
+  if [ -n "$ip" ]; then
+    git -c "http.curloptResolve=github.com:443:${ip}" "$@"
+  else
+    git "$@"
+  fi
+}
+
 is_network_failure() {
   grep -Eiq 'Could not resolve host|Could not resolve hostname|Name or service not known|Temporary failure in name resolution|network is unreachable|Failed to connect|Connection timed out|Operation timed out|proxy|SSL_connect|LibreSSL SSL_connect' "$1"
 }
@@ -146,15 +175,51 @@ is_auth_failure() {
   grep -Eiq '403|Authentication failed|Permission denied|could not read Username|could not read Password|Repository not found|HTTP Basic: Access denied' "$1"
 }
 
+pull_log="$(mktemp)"
+pulled=false
+for i in 1 2 3 4 5 6; do
+  if git_with_github_resolve pull --ff-only origin main >"$pull_log" 2>&1; then
+    cat "$pull_log"
+    pulled=true
+    rm -f "$pull_log"
+    break
+  fi
+
+  cat "$pull_log"
+
+  if is_auth_failure "$pull_log"; then
+    rm -f "$pull_log"
+    echo "PAT 可能过期，请重新生成并更新 remote URL"
+    exit 1
+  fi
+
+  if is_network_failure "$pull_log"; then
+    echo "Git pull failed due to network/DNS/proxy readiness; retrying after backoff (${i}/6)..."
+    sleep $((i * 30))
+    wait_for_github_network || true
+    continue
+  fi
+
+  rm -f "$pull_log"
+  echo "Git pull failed for a non-network, non-auth reason; stop and report the error."
+  exit 1
+done
+
+rm -f "$pull_log"
+if [ "$pulled" != "true" ]; then
+  echo "Git pull still failed after DNS/proxy retries and DoH/IP fallback; stop before generating or committing."
+  exit 1
+fi
+
 git add content/posts/YYYY-MM-DD/
 git commit -m "digest: YYYY-MM-DD"
 
-wait_for_github_network || echo "GitHub network was not ready before push; attempting push with retry guard"
+wait_for_github_network || echo "Normal GitHub DNS was not ready before push; attempting DoH/IP fallback with retry guard"
 
 push_log="$(mktemp)"
 pushed=false
-for i in 1 2 3 4; do
-  if git push origin main >"$push_log" 2>&1; then
+for i in 1 2 3 4 5 6; do
+  if git_with_github_resolve push origin main >"$push_log" 2>&1; then
     cat "$push_log"
     pushed=true
     rm -f "$push_log"
@@ -170,8 +235,8 @@ for i in 1 2 3 4; do
   fi
 
   if is_network_failure "$push_log"; then
-    echo "Git push failed due to network/DNS/proxy readiness; retrying after backoff (${i}/4)..."
-    sleep $((i * 15))
+    echo "Git push failed due to network/DNS/proxy readiness; retrying after backoff (${i}/6)..."
+    sleep $((i * 30))
     wait_for_github_network || true
     continue
   fi
@@ -183,7 +248,7 @@ done
 
 rm -f "$push_log"
 if [ "$pushed" != "true" ]; then
-  echo "Git push still failed after network/DNS/proxy retries; keep the local commit and report that a later push is needed."
+  echo "Git push still failed after DNS/proxy retries and DoH/IP fallback; keep the local commit and report that a later push is needed."
   exit 1
 fi
 ```
