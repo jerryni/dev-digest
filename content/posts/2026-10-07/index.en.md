@@ -34,9 +34,9 @@ Today’s 10 picks skew toward AI, but the useful thread is operational rather t
 
    This TypeScript project describes itself as a next-generation E2E testing framework for web and mobile apps, and it is high on today’s GitHub Trending list. That timing makes sense: as AI coding accelerates implementation, teams need stronger checks on actual user paths. The evaluation criteria should be debugging speed, recordings, parallel runs, retries, and CI ergonomics, not just stars.
 
-6. [Simon Willison on OpenAI rogue agents and Wikimedia](https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/) `Simon Willison`
+6. [Anthropic expands the Cyber Verification Program](https://www.anthropic.com/news/cyber-verification-program) `Anthropic`
 
-   Simon Willison tracked a Wikimedia discussion about suspected OpenAI agent activity. Expect more of these incidents as autonomous systems touch public knowledge infrastructure. The hard parts are identity, disclosure, rate limits, attribution, and appeal processes, all of which are engineering concerns as much as policy concerns.
+   Anthropic expanded its Cyber Verification Program, continuing the trend of access controls around higher-risk cyber capabilities. This is where model governance becomes product design: who can use which tools, under what review, and with what audit trail. Security teams should watch these programs because they will shape both research access and enterprise procurement.
 
 7. [A V2EX developer built an install-free OS-like project](https://www.v2ex.com/t/1246642) `V2EX`
 
@@ -50,9 +50,9 @@ Today’s 10 picks skew toward AI, but the useful thread is operational rather t
 
    Mizchi’s Zenn post lays out an AI coding loop in terms of roles, evaluation, feedback, and CI. It is valuable because it treats AI programming as a process to tune, not a magic shortcut. Teams trying to move from personal AI usage to repeatable practice should read it as a checklist.
 
-10. [Anthropic expands the Cyber Verification Program](https://www.anthropic.com/news/cyber-verification-program) `Anthropic`
+10. [Publickey: HydraFusion preview lands in VS Code](https://www.publickey1.jp/blog/26/vs_codeaiaihydrafusion.html) `Publickey`
 
-    Anthropic expanded its Cyber Verification Program, continuing the trend of access controls around higher-risk cyber capabilities. This is where model governance becomes product design: who can use which tools, under what review, and with what audit trail. Security teams should watch these programs because they will shape both research access and enterprise procurement.
+    Publickey covered Microsoft’s HydraFusion preview in VS Code, a model orchestration approach aimed at balancing quality and cost. That is a practical direction for coding tools: route work across models instead of treating one model as the whole product. IDEs are becoming control planes for model selection, not just prompt boxes.
 
 ## Editor's note
 

@@ -34,9 +34,9 @@ summary: >-
 
    Webとモバイルアプリ向けのE2Eテストフレームワークが、GitHub Trendingで上位に入りました。AIコーディングで実装速度が上がるほど、ユーザー導線を検証する仕組みの価値は上がります。導入時はスター数よりも、失敗時の調査しやすさ、録画、並列実行、CI連携を見たいです。
 
-6. [Simon Willison: OpenAI rogue agents on Wikimedia](https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/) `Simon Willison`
+6. [Anthropic、Cyber Verification Programを拡張](https://www.anthropic.com/news/cyber-verification-program) `Anthropic`
 
-   Wikimedia上で疑われたOpenAI系エージェント活動について、Simon Willisonが記録しています。AIエージェントがWeb上の公共的な知識基盤に触れると、編集、クロール、引用、署名、ブロックの扱いが一気に難しくなります。これは社会問題であると同時に、ログと識別子とポリシーの設計問題でもあります。
+   AnthropicがCyber Verification Programを拡張しました。高リスクなサイバー能力について、誰がどの機能を使えるのかをより細かく管理する流れです。モデルの能力が上がるほど、権限、監査、利用目的の説明は後付けでは済まなくなります。
 
 7. [ブラウザで動くような個人OS開発のV2EX投稿](https://www.v2ex.com/t/1246642) `V2EX`
 

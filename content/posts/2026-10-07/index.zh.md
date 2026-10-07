@@ -34,9 +34,9 @@ summary: >-
 
    这个 TypeScript 项目今天冲到 GitHub Trending 前排，定位是面向 Web 和移动端的下一代端到端测试框架。AI 让代码生产速度变快后，端到端测试的重要性会继续上升，因为真实用户路径不能靠代码生成器自证。选测试框架时别只看 stars，失败定位、录像、并发、重试和 CI 集成才是长期成本。
 
-6. [Simon Willison：OpenAI rogue agents 与 Wikimedia](https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/) `Simon Willison`
+6. [Anthropic 扩展 Cyber Verification Program](https://www.anthropic.com/news/cyber-verification-program) `Anthropic`
 
-   Simon 记录了 Wikimedia 项目中出现疑似 OpenAI 代理活动的讨论，这类事件会越来越常见。真正的问题不是某个 agent 是否“越界”，而是社区、平台和公司如何识别自动化行为，并给出透明的申诉与治理机制。AI agent 进入公共知识库后，爬取、编辑、引用和署名都会变成工程问题。
+   Anthropic 今天更新了 Cyber Verification Program，继续把高风险网络安全能力纳入更细的访问与验证流程。模型公司正在把“谁能用什么能力”制度化，这会影响红队、安全研究和企业采购。对工程组织来说，模型能力越强，权限、审计和使用场景说明就越不能临时补。
 
 7. [手太痒了，终于开发了个操作系统，免安装那种](https://www.v2ex.com/t/1246642) `V2EX`
 
@@ -50,9 +50,9 @@ summary: >-
 
    mizchi 这篇 Zenn 文章把 AI 编程拆成循环、评估、角色分工和 CI 调整，适合想把 agent 引入团队流程的人读。它没有把 AI 编程包装成魔法，而是强调指标、反馈和人类判断。中文团队如果正在从“个人用得爽”走向“团队可复现”，这篇很值得当作讨论提纲。
 
-10. [Anthropic 扩展 Cyber Verification Program](https://www.anthropic.com/news/cyber-verification-program) `Anthropic`
+10. [Publickey：VS Code 预览实现 HydraFusion](https://www.publickey1.jp/blog/26/vs_codeaiaihydrafusion.html) `Publickey`
 
-    Anthropic 今天更新了 Cyber Verification Program，继续把高风险网络安全能力纳入更细的访问与验证流程。模型公司正在把“谁能用什么能力”制度化，这会影响红队、安全研究和企业采购。对工程组织来说，模型能力越强，权限、审计和使用场景说明就越不能临时补。
+    Publickey 报道了 VS Code 预览实现 HydraFusion，用 AI 模型编排来平衡质量和成本。这个方向很实际：未来 IDE 可能不只是把 prompt 发给一个模型，而是按任务拆分、路由和组合多个模型。对团队来说，开发工具会逐渐变成模型调度层，成本策略也会进入编码体验本身。
 
 ## 编者按
 
