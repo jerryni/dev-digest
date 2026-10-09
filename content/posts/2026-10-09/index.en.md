@@ -10,7 +10,7 @@ summary: >-
 
 ## Today at a glance
 
-Today’s 10 picks split across EN 4, ZH 2, and JA 4. The useful signal is operational: smaller models, clearer agent boundaries, structured terminal state, and database systems moving closer to analytical data. The AI story is becoming an infrastructure story again.
+Today’s 10 picks split across EN 5, ZH 2, and JA 3. The useful signal is operational: smaller models, clearer agent boundaries, structured terminal state, and database systems moving closer to analytical data. The AI story is becoming an infrastructure story again.
 
 ## Picks
 
